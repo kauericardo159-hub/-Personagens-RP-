@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Personagem</title>
+    <style>
+        body { background-color: #121212; color: white; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .card { background: #1e1e1e; border-radius: 20px; padding: 30px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        /* O PNG CIRCULAR */
+        .profile-pic { 
+            width: 150px; height: 150px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 4px solid #7d5fff;
+            margin-bottom: 20px;
+        }
+
+        h1 { color: #7d5fff; margin-bottom: 5px; }
+        .content { text-align: left; line-height: 1.6; color: #ccc; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img src="assets/Evelyn.png" class="profile-pic" alt="Foto">
+        
+        <div id="output" class="content">
+            Carregando ficha...
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Altere o nome do arquivo aqui para carregar outros personagens
+        const personagem = 'Fantasia/Evelyn.md';
+
+        fetch(personagem)
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('output').innerHTML = marked.parse(text);
+            })
+            .catch(err => {
+                document.getElementById('output').innerHTML = "Erro ao carregar ficha.";
+            });
+    </script>
+</body>
+</html>
